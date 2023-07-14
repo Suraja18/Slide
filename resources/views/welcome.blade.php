@@ -173,11 +173,36 @@
                         </a>
                     </div>
                 </div>
+
+                @php
+                    $sps = App\Models\Switch1::all();
+                @endphp
                 <!-- call 'toggleState' whenever clicked -->
-                < <div class="switch">
-                    <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                    <label for="cmn-toggle-1"></label>
-            </div>
+                
+                <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($sps as $service)
+                    <tr>
+                    <td>{!! $loop->iteration !!}</td>
+                    <td>{!! $service->name !!}</td>
+                    <td>
+                    <div class="switch">
+                        <input id="cmn-toggle-{{ $loop->iteration }}" class="cmn-toggle cmn-toggle-round" name="status" type="checkbox" {{ $service->switch == 1 ? 'checked' : '' }}>
+                        <label for="cmn-toggle-{{ $loop->iteration }}"></label>
+                    </div>
+                    </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+                </table>
+                 
 
             <div class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0">
                 Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})

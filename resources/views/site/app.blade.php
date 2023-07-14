@@ -908,12 +908,14 @@
         user-select: none;
     }
     </style>
+    <livewire:styles />
 
 
 </head>
 
 <body class="antialiased">
     {{ $slot }}
+    <livewire:scripts />
 </body>
 
 </html>
